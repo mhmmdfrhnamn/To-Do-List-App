@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 void main() {
   runApp(const TodoListApp());
@@ -31,6 +33,27 @@ class _TodoHomePageState extends State<TodoHomePage> {
   final List<String> _todos = []; // Daftar tugas
   final TextEditingController _controller = TextEditingController(); // Untuk input teks
 
+@override
+void initState() {
+  super.initState();
+  _loadTodos();
+}
+
+Future<void> _loadTodos() async {
+  final prefs = await SharedPreferences.getInstance();
+  final String? todosString = prefs.getString('todos');
+  if (todosString != null) {
+    setState(() {
+      _todos.addAll(List<String>.from(jsonDecode(todosString)));
+    });
+  }
+}
+
+Future<void> _saveTodos() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('todos', jsonEncode(_todos));
+}
+
   void _addTodo() {
     final text = _controller.text;
     if (text.isNotEmpty) {
@@ -38,6 +61,7 @@ class _TodoHomePageState extends State<TodoHomePage> {
         _todos.add(text);
         _controller.clear();
       });
+      _saveTodos();
     }
   }
 
@@ -45,6 +69,7 @@ class _TodoHomePageState extends State<TodoHomePage> {
     setState(() {
       _todos.removeAt(index);
     });
+    _saveTodos();
   }
 
   @override
