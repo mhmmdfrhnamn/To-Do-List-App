@@ -42,23 +42,26 @@ class TodoListApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Todo List Harian',
       theme: ThemeData(
+        brightness: Brightness.light,
         primarySwatch: Colors.indigo,
         scaffoldBackgroundColor: Colors.grey[100],
         fontFamily: 'FiraSans',
         textTheme: const TextTheme(
-        bodyLarge: TextStyle(fontSize: 16.0, color: Colors.black87),
-        titleLarge: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
-  ),
+          bodyLarge: TextStyle(fontSize: 16.0, color: Colors.black87),
+          titleLarge: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+        ),
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
         titleTextStyle: TextStyle(fontSize: 20,   fontWeight: FontWeight.bold),
-  ),
-      inputDecorationTheme: const InputDecorationTheme(
-      border: OutlineInputBorder(),
-      labelStyle: TextStyle(color: Colors.indigo),
-  ),
       ),
+      inputDecorationTheme: const InputDecorationTheme(
+        border: OutlineInputBorder(),
+        labelStyle: TextStyle(color: Colors.indigo),
+      ),
+      ),
+      darkTheme: ThemeData(),
+      themeMode: ThemeMode.system,
       home: const TodoHomePage(),
     );
   }
@@ -204,6 +207,8 @@ Future<void> _saveTodos() async {
                         style: TextStyle(
                           decoration: todo.isDone ? TextDecoration.lineThrough : null,
                           color: todo.isDone ? Colors.grey : Colors.black,
+                          fontSize: 18,//tambahan styling widget individu
+                          fontWeight: FontWeight.bold,//tambahan styling widget individu
                         ),
                       ),
                       subtitle: Text(todo.date),
