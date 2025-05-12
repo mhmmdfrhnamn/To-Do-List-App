@@ -35,7 +35,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   http: ^1.0.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -58,6 +57,12 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  fonts:
+    - family: 'FiraSans'
+      fonts:
+        - asset: 'assets/fonts/FiraSans-Regular.ttf'
+        - asset: 'assets/fonts/FiraSans-Bold.ttf'
 
   # To add assets to your application, add an assets section, like this:
   # assets:
