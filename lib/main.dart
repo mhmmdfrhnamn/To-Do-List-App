@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
+import 'second_page.dart';
 
 void main() {
   runApp(const TodoListApp());
@@ -146,6 +147,17 @@ Future<void> _saveTodos() async {
     return Scaffold(
       appBar: AppBar(
         title: const Text('To Do List Harian'),
+        actions: [
+        IconButton(
+        icon: const Icon(Icons.info_outline),
+        tooltip: 'Tentang Aplikasi',
+        onPressed: (){
+          Navigator.push(context, 
+          MaterialPageRoute(builder: (context)=> const SecondPage()),
+          );
+        },
+      )
+      ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
